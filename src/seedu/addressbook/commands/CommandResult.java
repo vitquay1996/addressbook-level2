@@ -15,7 +15,11 @@ public class CommandResult {
 
     /** The list of persons that was produced by the command */
     private final List<? extends ReadOnlyPerson> relevantPersons;
-
+    
+    public String getFeedbackToUser() {
+    	return this.feedbackToUser;
+    }
+    
     public CommandResult(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;
         relevantPersons = null;
