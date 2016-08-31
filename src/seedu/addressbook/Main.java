@@ -9,6 +9,8 @@ import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.ui.TextUi;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -81,6 +83,14 @@ public class Main {
         Command command;
         do {
             String userCommandText = ui.getUserCommand();
+            try {
+            	FileReader reader = new FileReader(storage.getPath());
+            }
+            catch (FileNotFoundException fnfe) {
+            	ui.showToUser(fnfe.getMessage());
+                System.exit(0);
+            }
+
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             recordResult(result);
